@@ -32,10 +32,10 @@ const lightThemeOptions: ThemeOptions = {
     palette: {
         type: 'light',
         primary: {
-            main: '#794BC4',
+            main: '#e4000f',
         },
         secondary: {
-            main: '#e65100',
+            main: '#009ce4',
         },
     },
 };
@@ -43,10 +43,10 @@ const darkThemeOptions: ThemeOptions = {
     palette: {
         type: 'dark',
         primary: {
-            main: '#794BC4',
+            main: '#e4000f',
         },
         secondary: {
-            main: '#e65100',
+            main: '#009ce4',
         },
     },
 };

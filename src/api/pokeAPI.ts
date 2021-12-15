@@ -3,12 +3,14 @@
 const API_URL = 'https://pokeapi.co/api/v2/';
 
 export const fetchEggGroupInfo = async (): Promise<{
-    [key: string]: any,
+    [key: string]: unknown,
 }> => {
 
-    const res = await fetch(`${API_URL}egg-group/1`);
+    const groups: {[key: string]: unknown} = {};
+    const res = await fetch(`${API_URL}egg-group/15`);
     const group = await res.json();
-    console.log(group);
+    groups[group.name] = group;
+    console.log(groups);
     return group;
 
 };

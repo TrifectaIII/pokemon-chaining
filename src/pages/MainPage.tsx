@@ -4,16 +4,10 @@ import {
 } from 'react-router-dom';
 
 import {
-    Button,
-    ButtonGroup,
     Typography,
     Box,
     makeStyles,
 } from '@material-ui/core';
-import {
-    Apps as AppsIcon,
-    Error as ErrorIcon,
-} from '@material-ui/icons';
 
 import {
     useAppSelector,
@@ -57,26 +51,8 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
                 variant='h2'
                 align='center'
             >
-                React-ReduxTK-Router-MUI-TS Template
+                Pokemon Chaining
             </Typography>
-            <ButtonGroup
-                variant='contained'
-                className={classes.buttons}
-            >
-                {/* buttons which function as links */}
-                <Button
-                    onClick={() => props.history.push('/counter')}
-                    color='primary'
-                >
-                    <AppsIcon />Counter App
-                </Button>
-                <Button
-                    onClick={() => props.history.push('/nonexistent')}
-                    color='secondary'
-                >
-                    <ErrorIcon />Test 404 Page
-                </Button>
-            </ButtonGroup>
         </Box>
     );
 
