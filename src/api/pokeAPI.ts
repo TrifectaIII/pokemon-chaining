@@ -8,6 +8,7 @@ export const fetchEggGroupInfo = async (): Promise<{
 
     const res = await fetch(`${API_URL}egg-group/1`);
     const group = await res.json();
+    console.log(group);
     return group;
 
 };

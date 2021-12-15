@@ -15,6 +15,15 @@ import {
     Error as ErrorIcon,
 } from '@material-ui/icons';
 
+import {
+    useAppSelector,
+    useAppDispatch,
+} from '../state/hooks';
+import {
+    selectLoad,
+    fetchEggGroupInfoAsync,
+} from '../state/pokeSlice';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: '3rem',
@@ -28,6 +37,14 @@ const useStyles = makeStyles((theme) => ({
 const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
 
     const classes = useStyles();
+    const dispatch = useAppDispatch();
+
+    const load = useAppSelector(selectLoad);
+    if (load === 'unloaded') {
+
+        dispatch(fetchEggGroupInfoAsync());
+
+    }
 
     return (
         <Box
