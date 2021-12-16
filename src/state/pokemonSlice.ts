@@ -8,8 +8,10 @@ import {
     RootState,
 } from './store';
 import {
+    fetchPokemonInfo,
     fetchEggGroupInfo,
     fetchGenderInfo,
+    Pokemon,
     Categories,
 } from '../api/pokemonAPI';
 
@@ -17,17 +19,19 @@ type Load = 'loading' | 'loaded' | 'failed' | 'unloaded';
 
 // Slice of state for counter page
 export interface PokemonState {
-    load: Load;
-    startingPokemon: string;
-    endingPokemon: string;
-    eggGroups: Categories | null;
-    genders: Categories | null;
+    load: Load
+    startingPokemon: string
+    endingPokemon: string
+    pokemon: Pokemon[] | null
+    eggGroups: Categories | null
+    genders: Categories | null
 }
 
 const initialState: PokemonState = {
     load: 'unloaded',
     startingPokemon: '',
     endingPokemon: '',
+    pokemon: null,
     eggGroups: null,
     genders: null,
 };
@@ -35,18 +39,21 @@ const initialState: PokemonState = {
 export const fetchPokemonInfoAsync = createAsyncThunk(
     'pokemon/fetchPokemonInfo',
     async (): Promise<{
+        pokemon: Pokemon[],
         eggGroups: Categories,
         genders: Categories,
     }> => {
 
         const res = await Promise.all([
+            fetchPokemonInfo(),
             fetchEggGroupInfo(),
             fetchGenderInfo(),
         ]);
         // The value we return becomes the `fulfilled` action payload
         return {
-            eggGroups: res[0],
-            genders: res[1],
+            pokemon: res[0],
+            eggGroups: res[1],
+            genders: res[2],
         };
 
     },
@@ -81,6 +88,7 @@ export const pokemonSlice = createSlice({
             addCase(fetchPokemonInfoAsync.fulfilled, (state, {payload}) => {
 
                 state.load = 'loaded';
+                state.pokemon = payload.pokemon;
                 state.eggGroups = payload.eggGroups;
                 state.genders = payload.genders;
 

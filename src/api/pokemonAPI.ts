@@ -3,17 +3,24 @@
 
 const API_URL = 'https://pokeapi.co/api/v2/';
 
+export type Pokemon = {
+    name: string
+    url: string
+}
+
+export type Categories = {
+    [name: string]: {
+        name: string
+        pokemon: Pokemon[]
+    }
+}
+
 type ResourceList = {
     count: number
     results: {
         name: string
         url: string
     }[]
-}
-
-type Pokemon = {
-    name: string
-    url: string
 }
 
 type EggGroup = {
@@ -29,12 +36,13 @@ type Gender = {
     }[]
 }
 
-export type Categories = {
-    [name: string]: {
-        name: string
-        pokemon: Pokemon[]
-    }
-}
+export const fetchPokemonInfo = async (): Promise<Pokemon[]> => {
+
+    const listRes = await fetch(`${API_URL}pokemon?limit=9999`);
+    const pokemonList = await listRes.json() as ResourceList;
+    return pokemonList.results;
+
+};
 
 export const fetchEggGroupInfo = async (): Promise<Categories> => {
 

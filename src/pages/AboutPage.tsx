@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// An information page component
-const InfoPage = (props: RouteComponentProps<{}>): JSX.Element => {
+// An about page
+const AboutPage = (props: RouteComponentProps<{}>): JSX.Element => {
 
     const classes = useStyles();
 
@@ -23,10 +23,10 @@ const InfoPage = (props: RouteComponentProps<{}>): JSX.Element => {
         <Box
             className={classes.root}
         >
-            Info
+            About
         </Box>
     );
 
 };
 
-export default InfoPage;
+export default AboutPage;

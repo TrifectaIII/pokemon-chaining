@@ -17,7 +17,7 @@ import {
 
 import MainPage from './pages/MainPage';
 import NotFoundPage from './pages/NotFoundPage';
-import InfoPage from './pages/InfoPage';
+import AboutPage from './pages/AboutPage';
 import Header from './components/Header';
 import MenuDrawer from './components/MenuDrawer';
 import {useAppSelector} from './state/hooks';
@@ -83,8 +83,8 @@ const App = (): JSX.Element => {
                         />
                         {/* information page */}
                         <Route
-                            exact path='/info'
-                            component={InfoPage}
+                            exact path='/about'
+                            component={AboutPage}
                         />
                         {/* default to 404 */}
                         <Route component={NotFoundPage} />

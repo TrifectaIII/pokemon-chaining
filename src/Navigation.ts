@@ -20,8 +20,8 @@ export interface NavMapType {
 
 // navmap for this app
 export const navMap: NavMapType = {
-    'Info': {
+    'About': {
         icon: InfoIcon,
-        route: '/info',
+        route: '/about',
     },
 };
