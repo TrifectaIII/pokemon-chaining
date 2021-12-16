@@ -15,8 +15,8 @@ import {
 } from '../state/hooks';
 import {
     selectLoad,
-    fetchEggGroupInfoAsync,
-} from '../state/pokeSlice';
+    fetchPokemonInfoAsync,
+} from '../state/pokemonSlice';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,11 +34,7 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
     const dispatch = useAppDispatch();
 
     const load = useAppSelector(selectLoad);
-    if (load === 'unloaded') {
-
-        dispatch(fetchEggGroupInfoAsync());
-
-    }
+    if (load === 'unloaded') dispatch(fetchPokemonInfoAsync());
 
     return (
         <Box

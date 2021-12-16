@@ -8,19 +8,14 @@ import {
     makeStyles,
 } from '@material-ui/core';
 
-// import {
-//     useAppSelector,
-//     useAppDispatch,
-// } from '../state/hooks';
-
 const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: '3rem',
     },
 }));
 
-// An empty template page component
-const TemplatePage = (props: RouteComponentProps<{}>): JSX.Element => {
+// An information page component
+const InfoPage = (props: RouteComponentProps<{}>): JSX.Element => {
 
     const classes = useStyles();
 
@@ -28,10 +23,10 @@ const TemplatePage = (props: RouteComponentProps<{}>): JSX.Element => {
         <Box
             className={classes.root}
         >
-            Template Page
+            Info
         </Box>
     );
 
 };
 
-export default TemplatePage;
+export default InfoPage;

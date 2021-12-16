@@ -15,8 +15,9 @@ import {
     ThemeOptions,
 } from '@material-ui/core';
 
-import Main from './pages/MainPage';
-import NotFound from './pages/NotFoundPage';
+import MainPage from './pages/MainPage';
+import NotFoundPage from './pages/NotFoundPage';
+import InfoPage from './pages/InfoPage';
 import Header from './components/Header';
 import MenuDrawer from './components/MenuDrawer';
 import {useAppSelector} from './state/hooks';
@@ -78,10 +79,15 @@ const App = (): JSX.Element => {
                         {/* main page */}
                         <Route
                             exact path='/'
-                            component={Main}
+                            component={MainPage}
+                        />
+                        {/* information page */}
+                        <Route
+                            exact path='/info'
+                            component={InfoPage}
                         />
                         {/* default to 404 */}
-                        <Route component={NotFound} />
+                        <Route component={NotFoundPage} />
                     </Switch>
                 </Container>
             </Router>

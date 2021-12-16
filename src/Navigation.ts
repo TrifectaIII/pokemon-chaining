@@ -1,5 +1,6 @@
 import {SvgIconTypeMap} from '@material-ui/core';
 import {OverridableComponent} from '@material-ui/core/OverridableComponent';
+import {Info as InfoIcon} from '@material-ui/icons';
 
 // Type to determine navigation options on header
 export interface NavMapType {
@@ -18,4 +19,9 @@ export interface NavMapType {
 }
 
 // navmap for this app
-export const navMap: NavMapType = {};
+export const navMap: NavMapType = {
+    'Info': {
+        icon: InfoIcon,
+        route: '/info',
+    },
+};

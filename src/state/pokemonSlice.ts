@@ -9,7 +9,9 @@ import {
 } from './store';
 import {
     fetchEggGroupInfo,
-} from '../api/pokeAPI';
+    fetchGenderInfo,
+    Categories,
+} from '../api/pokemonAPI';
 
 type Load = 'loading' | 'loaded' | 'failed' | 'unloaded';
 
@@ -18,21 +20,34 @@ export interface PokemonState {
     load: Load;
     startingPokemon: string;
     endingPokemon: string;
+    eggGroups: Categories | null;
+    genders: Categories | null;
 }
 
 const initialState: PokemonState = {
     load: 'unloaded',
     startingPokemon: '',
     endingPokemon: '',
+    eggGroups: null,
+    genders: null,
 };
 
-export const fetchEggGroupInfoAsync = createAsyncThunk(
-    'pokemon/fetchEggGroupInfo',
-    async () => {
+export const fetchPokemonInfoAsync = createAsyncThunk(
+    'pokemon/fetchPokemonInfo',
+    async (): Promise<{
+        eggGroups: Categories,
+        genders: Categories,
+    }> => {
 
-        const response = await fetchEggGroupInfo();
+        const res = await Promise.all([
+            fetchEggGroupInfo(),
+            fetchGenderInfo(),
+        ]);
         // The value we return becomes the `fulfilled` action payload
-        return response.data;
+        return {
+            eggGroups: res[0],
+            genders: res[1],
+        };
 
     },
 );
@@ -58,17 +73,19 @@ export const pokemonSlice = createSlice({
     extraReducers: (builder) => {
 
         builder.
-            addCase(fetchEggGroupInfoAsync.pending, (state) => {
+            addCase(fetchPokemonInfoAsync.pending, (state) => {
 
                 state.load = 'loading';
 
             }).
-            addCase(fetchEggGroupInfoAsync.fulfilled, (state, action) => {
+            addCase(fetchPokemonInfoAsync.fulfilled, (state, {payload}) => {
 
                 state.load = 'loaded';
+                state.eggGroups = payload.eggGroups;
+                state.genders = payload.genders;
 
             }).
-            addCase(fetchEggGroupInfoAsync.rejected, (state) => {
+            addCase(fetchPokemonInfoAsync.rejected, (state) => {
 
                 state.load = 'failed';
 

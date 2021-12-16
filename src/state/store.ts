@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import globalReducer from './globalSlice';
-import pokemonReducer from './pokeSlice';
+import pokemonReducer from './pokemonSlice';
 
 // Store containing all state slices
 export const store = configureStore({
