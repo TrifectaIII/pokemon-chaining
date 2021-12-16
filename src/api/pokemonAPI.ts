@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 // request pokeapi data
 
-const API_URL = 'https://pokeapi.co/api/v2/';
+const API_URL = 'https://pokeapi.co/api/v2';
 
 export type Pokemon = {
     name: string
@@ -38,7 +38,7 @@ type Gender = {
 
 export const fetchPokemonInfo = async (): Promise<Pokemon[]> => {
 
-    const listRes = await fetch(`${API_URL}pokemon?limit=9999`);
+    const listRes = await fetch(`${API_URL}/pokemon?limit=99999`);
     const pokemonList = await listRes.json() as ResourceList;
     return pokemonList.results;
 
@@ -46,11 +46,11 @@ export const fetchPokemonInfo = async (): Promise<Pokemon[]> => {
 
 export const fetchEggGroupInfo = async (): Promise<Categories> => {
 
-    const listRes = await fetch(`${API_URL}egg-group/`);
+    const listRes = await fetch(`${API_URL}/egg-group`);
     const groupList = await listRes.json() as ResourceList;
     const groups: Categories = {};
 
-    await Promise.all(groupList.results.map(async (group, index) => {
+    await Promise.all(groupList.results.map(async (group) => {
 
         const res = await fetch(group.url);
         const data = await res.json() as EggGroup;
@@ -67,17 +67,19 @@ export const fetchEggGroupInfo = async (): Promise<Categories> => {
 
 export const fetchGenderInfo = async (): Promise<Categories> => {
 
-    const listRes = await fetch(`${API_URL}gender/`);
+    const listRes = await fetch(`${API_URL}/gender`);
     const genderList = await listRes.json() as ResourceList;
     const genders: Categories = {};
 
-    await Promise.all(genderList.results.map(async (gender, index) => {
+    await Promise.all(genderList.results.map(async (gender) => {
 
         const res = await fetch(gender.url);
         const data = await res.json() as Gender;
         genders[gender.name] = {
             name: gender.name,
-            pokemon: data.pokemon_species_details.map((details) => details.pokemon_species),
+            pokemon: data.pokemon_species_details.map(
+                (details) => details.pokemon_species,
+            ),
         };
 
     }));

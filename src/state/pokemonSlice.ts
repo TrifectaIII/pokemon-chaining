@@ -104,21 +104,14 @@ export const pokemonSlice = createSlice({
 
 export const {setStarting, setEnding} = pokemonSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.template.value)`
-export const selectLoad = (state: RootState): Load => state.pokemon.load;
-
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-// export const incrementIfOdd = (amount: number): AppThunk => (
-//     dispatch,
-//     getState
-// ) => {
-//     const currentValue = selectCount(getState());
-//     if (currentValue % 2 === 1) {
-//         dispatch(incrementByAmount(amount));
-//     }
-// };
+// selectors
+export const selectLoad =
+    (state: RootState): Load => state.pokemon.load;
+export const selectPokemon =
+    (state: RootState): Pokemon[] | null => state.pokemon.pokemon;
+export const selectEggGroups =
+    (state: RootState): Categories | null => state.pokemon.eggGroups;
+export const selectGenders =
+    (state: RootState): Categories | null => state.pokemon.genders;
 
 export default pokemonSlice.reducer;
