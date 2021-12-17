@@ -67,7 +67,7 @@ export const fetchEggGroupInfo = async (): Promise<Categories> => {
 
 export const fetchGenderInfo = async (): Promise<Categories> => {
 
-    const listRes = await fetch(`${API_URL}/gender`);
+    const listRes = await fetch(`${API_URL}/genderERROR`);
     const genderList = await listRes.json() as ResourceList;
     const genders: Categories = {};
 

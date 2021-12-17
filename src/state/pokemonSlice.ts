@@ -113,5 +113,9 @@ export const selectEggGroups =
     (state: RootState): Categories | null => state.pokemon.eggGroups;
 export const selectGenders =
     (state: RootState): Categories | null => state.pokemon.genders;
+export const selectStartingPokemon =
+    (state: RootState): string => state.pokemon.startingPokemon;
+export const selectEndingPokemon =
+    (state: RootState): string => state.pokemon.endingPokemon;
 
 export default pokemonSlice.reducer;

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
     Box,
+    Typography,
     makeStyles,
 } from '@material-ui/core';
 
@@ -16,17 +17,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// Template component
-const Template = (props: {}): JSX.Element => {
+//  Loading display component
+const Loading = (props: {}): JSX.Element => {
 
     const classes = useStyles();
 
     return (
         <Box className={classes.root}>
-            Template Component
+            <Typography
+                variant='h4'
+                align='center'
+            >
+                Loading...
+            </Typography>
         </Box>
     );
 
 };
 
-export default Template;
+export default Loading;
