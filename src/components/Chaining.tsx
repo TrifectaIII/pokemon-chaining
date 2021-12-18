@@ -3,6 +3,8 @@ import React from 'react';
 import {
     Box,
     Typography,
+    Select,
+    MenuItem,
     makeStyles,
 } from '@material-ui/core';
 
@@ -28,15 +30,17 @@ const useStyles = makeStyles((theme) => ({
 const Chaining = (props: {}): JSX.Element => {
 
     const classes = useStyles();
+    const dispatch = useAppDispatch();
+
+    const pokemon = useAppSelector(selectPokemon)?.
+        map((poke) => poke.name).
+        map((name) => <MenuItem key={name} value={name}>{name}</MenuItem>);
 
     return (
         <Box className={classes.root}>
-            <Typography
-                variant='h4'
-                align='center'
-            >
-                Loading...
-            </Typography>
+            <Select>
+                {pokemon}
+            </Select>
         </Box>
     );
 

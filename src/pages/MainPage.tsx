@@ -19,6 +19,7 @@ import {
 } from '../state/pokemonSlice';
 import Loading from '../components/Loading';
 import Failed from '../components/Failed';
+import Chaining from '../components/Chaining';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,7 +54,11 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
             </Typography>
             {load === 'loading' ? <Loading /> : ''}
             {load === 'failed'
-                ? <Failed tryAgain={() => dispatch(fetchPokemonInfoAsync())}/>
+                ? <Failed tryAgain={() => dispatch(fetchPokemonInfoAsync())} />
+                : ''
+            }
+            {load === 'loaded'
+                ? <Chaining />
                 : ''
             }
         </Box>
