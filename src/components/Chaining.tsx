@@ -1,14 +1,17 @@
 import React from 'react';
 
 import {
-    Box,
     Select,
     MenuItem,
     FormControl,
     FormHelperText,
     InputLabel,
+    Grid,
     makeStyles,
 } from '@material-ui/core';
+import {
+    ArrowForwardIos as ArrowIcon,
+} from '@material-ui/icons';
 
 import {
     useAppSelector,
@@ -69,46 +72,69 @@ const Chaining = (props: {}): JSX.Element => {
     };
 
     return (
-        <Box className={classes.root}>
-
+        <Grid
+            container
+            spacing={3}
+            className={classes.root}
+        >
             {/* Starting Pokemon Input */}
-            <FormControl>
-                <InputLabel
-                    shrink
-                    id='starting-pokemon-input-label'
-                >
-                    Starting Pokemon
-                </InputLabel>
-                <Select
-                    value={startingPokemon}
-                    onChange={handleStarting}
-                    variant='standard'
-                    labelId='starting-pokemon-input-label'
-                >
-                    {pokemon}
-                </Select>
-                <FormHelperText>Starting Pokemon</FormHelperText>
-            </FormControl>
+            <Grid
+                item
+                xs={12}
+                md={5}
+            >
+                <FormControl>
+                    <InputLabel
+                        shrink
+                        id='starting-pokemon-input-label'
+                    >
+                        Starting Pokemon
+                    </InputLabel>
+                    <Select
+                        value={startingPokemon}
+                        onChange={handleStarting}
+                        variant='standard'
+                        labelId='starting-pokemon-input-label'
+                    >
+                        {pokemon}
+                    </Select>
+                    <FormHelperText>Starting Pokemon</FormHelperText>
+                </FormControl>
+            </Grid>
+
+            <Grid
+                item
+                xs={12}
+                md={2}
+            >
+                <ArrowIcon />
+            </Grid>
 
             {/* Ending Pokemon Input */}
-            <FormControl>
-                <InputLabel
-                    shrink
-                    id='ending-pokemon-input-label'
-                >
-                    Ending Pokemon
-                </InputLabel>
-                <Select
-                    value={endingPokemon}
-                    onChange={handleEnding}
-                    variant='standard'
-                    labelId='ending-pokemon-input-label'
-                >
-                    {pokemon}
-                </Select>
-                <FormHelperText>Ending Pokemon</FormHelperText>
-            </FormControl>
-        </Box>
+            <Grid
+                item
+                xs={12}
+                md={5}
+            >
+                <FormControl>
+                    <InputLabel
+                        shrink
+                        id='ending-pokemon-input-label'
+                    >
+                        Ending Pokemon
+                    </InputLabel>
+                    <Select
+                        value={endingPokemon}
+                        onChange={handleEnding}
+                        variant='standard'
+                        labelId='ending-pokemon-input-label'
+                    >
+                        {pokemon}
+                    </Select>
+                    <FormHelperText>Ending Pokemon</FormHelperText>
+                </FormControl>
+            </Grid>
+        </Grid>
     );
 
 };
