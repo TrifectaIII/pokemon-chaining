@@ -24,10 +24,17 @@ import {
     setStarting,
     setEnding,
 } from '../state/pokemonSlice';
+import {
+    MobileOnly,
+    DesktopOnly,
+} from './utilities';
 
 const useStyles = makeStyles((theme) => ({
     root: {
 
+    },
+    downArrow: {
+        transform: 'rotate(90deg)',
     },
 }));
 
@@ -76,6 +83,7 @@ const Chaining = (props: {}): JSX.Element => {
             container
             spacing={3}
             className={classes.root}
+            alignItems='center'
         >
             {/* Starting Pokemon Input */}
             <Grid
@@ -102,12 +110,18 @@ const Chaining = (props: {}): JSX.Element => {
                 </FormControl>
             </Grid>
 
+            {/* Arrow between */}
             <Grid
                 item
                 xs={12}
                 md={2}
             >
-                <ArrowIcon />
+                <DesktopOnly>
+                    <ArrowIcon />
+                </DesktopOnly>
+                <MobileOnly>
+                    <ArrowIcon className={classes.downArrow}/>
+                </MobileOnly>
             </Grid>
 
             {/* Ending Pokemon Input */}
