@@ -5,7 +5,6 @@ import {
     MenuItem,
     FormControl,
     FormHelperText,
-    InputLabel,
     Grid,
     makeStyles,
 } from '@material-ui/core';
@@ -65,6 +64,8 @@ const Chaining = (props: {}): JSX.Element => {
     const startingPokemon = useAppSelector(selectStartingPokemon);
     const endingPokemon = useAppSelector(selectEndingPokemon);
 
+    const selectVariant: 'filled' | 'outlined' | 'standard' = 'outlined';
+
     // handler functions
     const handleStarting = (event: React.ChangeEvent<{
         name?: string | undefined;
@@ -108,21 +109,21 @@ const Chaining = (props: {}): JSX.Element => {
                 className={classes.startingSelect}
             >
                 <FormControl>
-                    <InputLabel
-                        shrink
-                        id='starting-pokemon-input-label'
-                    >
-                        Starting Pokemon
-                    </InputLabel>
                     <Select
                         value={startingPokemon}
                         onChange={handleStarting}
-                        variant='standard'
+                        variant={selectVariant}
                         labelId='starting-pokemon-input-label'
+                        color='secondary'
                     >
                         {pokemon}
                     </Select>
-                    <FormHelperText>Starting Pokemon</FormHelperText>
+                    <FormHelperText
+                        variant={selectVariant}
+                        id='starting-pokemon-input-label'
+                    >
+                        Starting Pokemon
+                    </FormHelperText>
                 </FormControl>
             </Grid>
 
@@ -144,21 +145,21 @@ const Chaining = (props: {}): JSX.Element => {
                 className={classes.endingSelect}
             >
                 <FormControl>
-                    <InputLabel
-                        shrink
-                        id='ending-pokemon-input-label'
-                    >
-                        Ending Pokemon
-                    </InputLabel>
                     <Select
                         value={endingPokemon}
                         onChange={handleEnding}
-                        variant='standard'
+                        variant={selectVariant}
                         labelId='ending-pokemon-input-label'
+                        color='secondary'
                     >
                         {pokemon}
                     </Select>
-                    <FormHelperText>Ending Pokemon</FormHelperText>
+                    <FormHelperText
+                        variant={selectVariant}
+                        id='ending-pokemon-input-label'
+                    >
+                        Ending Pokemon
+                    </FormHelperText>
                 </FormControl>
             </Grid>
         </Grid>
