@@ -24,17 +24,31 @@ import {
     setStarting,
     setEnding,
 } from '../state/pokemonSlice';
-import {
-    MobileOnly,
-    DesktopOnly,
-} from './utilities';
 
 const useStyles = makeStyles((theme) => ({
     root: {
 
     },
-    downArrow: {
-        transform: 'rotate(90deg)',
+    arrow: {
+        display: 'flex',
+        justifyContent: 'center',
+        [theme.breakpoints.down('sm')]: {
+            transform: 'rotate(90deg)',
+        },
+    },
+    startingSelect: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        [theme.breakpoints.down('sm')]: {
+            justifyContent: 'center',
+        },
+    },
+    endingSelect: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        [theme.breakpoints.down('sm')]: {
+            justifyContent: 'center',
+        },
     },
 }));
 
@@ -84,12 +98,14 @@ const Chaining = (props: {}): JSX.Element => {
             spacing={3}
             className={classes.root}
             alignItems='center'
+            justifyContent='center'
         >
             {/* Starting Pokemon Input */}
             <Grid
                 item
                 xs={12}
                 md={5}
+                className={classes.startingSelect}
             >
                 <FormControl>
                     <InputLabel
@@ -115,13 +131,9 @@ const Chaining = (props: {}): JSX.Element => {
                 item
                 xs={12}
                 md={2}
+                className={classes.arrow}
             >
-                <DesktopOnly>
-                    <ArrowIcon />
-                </DesktopOnly>
-                <MobileOnly>
-                    <ArrowIcon className={classes.downArrow}/>
-                </MobileOnly>
+                <ArrowIcon />
             </Grid>
 
             {/* Ending Pokemon Input */}
@@ -129,6 +141,7 @@ const Chaining = (props: {}): JSX.Element => {
                 item
                 xs={12}
                 md={5}
+                className={classes.endingSelect}
             >
                 <FormControl>
                     <InputLabel
