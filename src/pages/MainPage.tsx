@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     buttons: {
         marginTop: '3rem',
     },
+    mainHeader: {
+        marginBottom: '3rem',
+    },
 }));
 
 // main index page for empty route
@@ -37,7 +40,9 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
     const dispatch = useAppDispatch();
 
     const load = useAppSelector(selectLoad);
-    if (load === 'unloaded') dispatch(fetchPokemonInfoAsync());
+
+    const fetchData = () => dispatch(fetchPokemonInfoAsync());
+    if (load === 'unloaded') fetchData();
 
     return (
         <Box
@@ -49,18 +54,13 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
             <Typography
                 variant='h2'
                 align='center'
+                className={classes.mainHeader}
             >
                 Pokemon Chaining
             </Typography>
             {load === 'loading' ? <Loading /> : ''}
-            {load === 'failed'
-                ? <Failed tryAgain={() => dispatch(fetchPokemonInfoAsync())} />
-                : ''
-            }
-            {load === 'loaded'
-                ? <Chaining />
-                : ''
-            }
+            {load === 'failed' ? <Failed /> : ''}
+            {load === 'loaded' ? <Chaining /> : ''}
         </Box>
     );
 

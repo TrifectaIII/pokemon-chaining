@@ -7,6 +7,13 @@ import {
     makeStyles,
 } from '@material-ui/core';
 
+import {
+    useAppDispatch,
+} from '../state/hooks';
+import {
+    fetchPokemonInfoAsync,
+} from '../state/pokemonSlice';
+
 const useStyles = makeStyles((theme) => ({
     root: {
 
@@ -14,16 +21,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //  failed to fetch display component
-const Failed = (props: {
-    tryAgain: () => void,
-}): JSX.Element => {
+const Failed = (props: {}): JSX.Element => {
 
     const classes = useStyles();
+    const dispatch = useAppDispatch();
 
     return (
         <Box
             className={classes.root}
-            textAlign={'center'}
+            textAlign='center'
         >
             <Typography
                 variant='h4'
@@ -39,7 +45,7 @@ const Failed = (props: {
             <Button
                 variant='contained'
                 size='large'
-                onClick={props.tryAgain}
+                onClick={() => dispatch(fetchPokemonInfoAsync())}
                 color='primary'
             >
                 Try Again

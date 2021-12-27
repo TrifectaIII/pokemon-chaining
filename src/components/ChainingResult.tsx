@@ -14,8 +14,6 @@ import {
 //     selectStartingPokemon,
 //     selectEndingPokemon,
 // } from '../state/pokemonSlice';
-import ChainingSelect from './ChainingSelect';
-import ChainingResult from './ChainingResult';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //  chaining display component
-const Chaining = (props: {}): JSX.Element => {
+const ChainingResult = (props: {}): JSX.Element => {
 
     const classes = useStyles();
     // const dispatch = useAppDispatch();
@@ -34,11 +32,10 @@ const Chaining = (props: {}): JSX.Element => {
 
     return (
         <Box className={classes.root}>
-            <ChainingSelect />
-            <ChainingResult />
+            A Result
         </Box>
     );
 
 };
 
-export default Chaining;
+export default ChainingResult;
